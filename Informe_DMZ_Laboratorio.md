@@ -1,42 +1,50 @@
-# Informe de configuraciÃ³n de DMZ con Cisco Packet Tracer
+# Informe de configuración de DMZ con Cisco Packet Tracer
 
 
 ### 1. Objetivo del laboratorio
 
-> Explica brevemente quÃ© se buscaba lograr con este laboratorio.
-
-**Ejemplo:**  
-Configurar una DMZ segura usando un router Cisco ISR, aplicando NAT y ACLs para controlar el trÃ¡fico entre LAN, DMZ y red externa.
+El objetivo de la práctica es configurar direccionamiento IP en una topología compleja, aplicar NAT estático para exponer servicios internos de forma segura y diseñar y aplicar ACLs para controlar el flujo de tráfico y asegurar la red. Todo esto será necesario para crear una Zona Desmilitarizada (DMZ) segura.
 
 ---
 
-### 2. TopologÃ­a implementada
+### 2. Topologí­a implementada
 
 > Describe la red. Puedes incluir una imagen si el software lo permite (captura de Packet Tracer).
 
-- Cantidad de redes: __________
-- Dispositivos usados: __________
-- Breve descripciÃ³n de la funciÃ³n de cada zona (LAN, DMZ, Externa).
+- Cantidad de redes:
+     Hay 3 redes que son las siguientes:
+        GigabitEthernet0/0          GigabitEthernet0/1          GigabitEthernet0/2
+- Dispositivos usados:
+    Hay un router Cisco ISR con el nombre de Router_FW
+    Hay tres switches Cisco 2960, uno para cada red
+    Hay dos ordenadores, el PC_Internal y el PC_External
+    Hay un servidor llamado Server-PT Web_DMZ
+  
+- Breve descripción de la función de cada zona (LAN, DMZ, Externa).
+  La red interna (LAN) conecta los equipos de la empresa con el servidor de la empresa
+  La DMZ aloja aislado al servidor de la empresa
+  La red externa conecta a los clientes con el servidor de la empresa de forma segura
 
+<img width="1837" height="999" alt="image" src="https://github.com/user-attachments/assets/38095f73-6c2e-4663-83db-87e7dbebb2cd" />
 
 
 ### 3. Plan de direccionamiento IP
 
-Completa la tabla con las IPs asignadas (puedes copiarla del enunciado si no cambiÃ³).
+Completa la tabla con las IPs asignadas (puedes copiarla del enunciado si no cambia).
 
-| Dispositivo             | IP              | MÃ¡scara           | Gateway           |
+| Dispositivo             | IP               | Máscara           | Gateway           |
 |-------------------------|------------------|-------------------|-------------------|
-| PC_Internal             |                  |                   |                   |
-| Server_DMZ              |                  |                   |                   |
-| PC_External             |                  |                   |                   |
+| PC_Internal             |  192.168.1.10    |   255.255.255.0   |   192.168.1.1     |
+| Server_DMZ              |  192.168.2.10    |   255.255.255.0   |   192.168.2.1     |
+| PC_External             |  192.168.3.10    |   255.255.255.0   |   192.168.3.1     |
 | Router_FW Gi0/0 (LAN)   |                  |                   |                   |
 | Router_FW Gi0/1 (DMZ)   |                  |                   |                   |
 | Router_FW Gi0/2 (Ext)   |                  |                   |                   |
 
 
-### 4. ConfiguraciÃ³n aplicada (resumen)
+### 4. Configuración aplicada (resumen)
 
-> Resume los comandos o pasos mÃ¡s relevantes que ejecutaste. Usa texto + fragmentos de cÃ³digo cuando sea necesario.
+> Resume los comandos o pasos más relevantes que ejecutaste. Usa texto + fragmentos de código cuando sea necesario.
 
 - Interfaces configuradas con `ip address`
 - NAT:
@@ -62,7 +70,7 @@ access-list 100 deny ip 192.168.2.0 0.0.0.255 192.168.1.0 0.0.0.255
 
 ### 6. Conclusiones y recomendaciones
 
-> Â¿QuÃ© aprendiste con este ejercicio? Â¿QuÃ© mejorarÃ­as?
+> ¿Qué aprendiste con este ejercicio? ¿Qué mejorarías?
 
 **Ejemplo:**
 AprendÃ­ a aplicar NAT y ACLs en un entorno simulado. Recomiendo verificar conectividad bÃ¡sica antes de aplicar reglas de firewall, ya que un error en la IP puede bloquear todo.
